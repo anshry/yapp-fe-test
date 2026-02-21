@@ -1,23 +1,36 @@
-
-
 const ITEMS = [
-  "NFTs starting from just $10!",
-  "Join the wave",
-  "More liquid than opensea",
-  "Start selling on raflux"
+    "NFTs starting from just $10!",
+    "Join the wave",
+    "More liquid than opensea",
+    "Start selling on raflux",
 ];
 
-// Duplicate items to ensure a smooth scrolling effect
-const MARQUEE_ITEMS = [...ITEMS, ...ITEMS, ...ITEMS];
+// Replicate the exact DOM structure from the real site (10 repetitions)
+const MARQUEE_BLOCKS = Array.from({ length: 10 });
 
 export const MarqueeStrip = () => {
-  return (
-    <div className="border-base-placeholder flex h-10.5 w-screen items-center justify-center border-y overflow-hidden">
-      <div className="flex gap-[100px] lg:gap-[200px] animate-marquee uppercase text-text-secondary text-[10px] whitespace-nowrap px-4 py-2">
-        {MARQUEE_ITEMS.map((item, index) => (
-          <span key={index}>{item}</span>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div
+            className="border-base-placeholder -mt-[1px] flex h-10.5 w-screen items-center justify-center border-y"
+            style={{ opacity: 1 }}
+        >
+            <div className="group flex [gap:var(--gap)] overflow-hidden [--duration:40s] flex-row p-0 [--gap:100px] lg:[--gap:200px]">
+                {MARQUEE_BLOCKS.map((_, blockIndex) => (
+                    <div
+                        key={blockIndex}
+                        className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row"
+                    >
+                        {ITEMS.map((item, itemIndex) => (
+                            <div
+                                key={itemIndex}
+                                className="text-text-secondary text-[10px] uppercase"
+                            >
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
