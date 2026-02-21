@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Kode Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Primary Raflux Colors */
+  --color-pumpkin-100: #fff2d3;
+  --color-pumpkin-800: #824600;
+  --color-primary: #ff7300;
+  --color-primary-hover: oklab(0.713059 0.130491 0.144314 / 0.985724);
+  --color-primary-foreground: #ffffff;
+  
+  /* Backgrounds & borders from the design */
+  --color-background: #141414;
+  --color-background-2: #201f1f;
+  --color-base-dark-secondary: #171616;
+  --color-base-placeholder: #3f3f3f;
+  
+  /* Text */
+  --color-text-secondary: #747474;
+  --color-text-tertiary: #878787;
+  --color-text-primary-tint: #f7f3ea; 
+
+  /* Custom Animations */
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/* Global resets and Base styling */
+@layer base {
+  body {
+    @apply m-0 bg-background text-white font-sans overflow-x-hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Lenis Smooth Scroll Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
