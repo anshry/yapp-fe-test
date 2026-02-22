@@ -1,5 +1,5 @@
 {
-  "name": "raflux-test-ag",
+  "name": "raflux",
   "private": true,
   "type": "module",
   "imports": {

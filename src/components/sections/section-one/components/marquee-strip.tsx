@@ -23,7 +23,7 @@ export const MarqueeStrip = ({
 }) => {
     const content = (
         <div
-            className={`flex h-10.5 w-screen items-center justify-center ${withBorders ? "border-base-placeholder -mt-px border-y" : ""}`}
+            className={`flex h-10.5 w-full items-center justify-center ${withBorders ? "border-base-placeholder -mt-px border-y" : ""}`}
             style={{ opacity: 1 }}
         >
             <div className="group flex gap-(--gap) overflow-hidden flex-row p-0 [--gap:100px] lg:[--gap:200px]">

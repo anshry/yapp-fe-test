@@ -122,59 +122,65 @@ void main() {
 }
 `;
 
-const TexturePlane = () => {
-    const materialRef = useRef<THREE.ShaderMaterial>(null);
-    const targetHover = useRef(0);
-    const [hovered, setHovered] = useState(false);
+    const TexturePlane = ({ disableHover }: { disableHover?: boolean }) => {
+        const materialRef = useRef<THREE.ShaderMaterial>(null);
+        const targetHover = useRef(0);
+        const [hovered, setHovered] = useState(false);
 
-    const uniforms = useMemo(
-        () => ({
-            uTime: { value: 0 },
-            uMouse: { value: new THREE.Vector2(0, 0) },
-            uResolution: { value: new THREE.Vector2(1, 1) },
-            uHovered: { value: 0 },
-        }),
-        [],
-    );
+        const uniforms = useMemo(
+            () => ({
+                uTime: { value: 0 },
+                uMouse: { value: new THREE.Vector2(0, 0) },
+                uResolution: { value: new THREE.Vector2(1, 1) },
+                uHovered: { value: 0 },
+            }),
+            [],
+        );
 
-    useFrame((state, delta) => {
-        if (materialRef.current) {
-            materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
-            materialRef.current.uniforms.uMouse.value.copy(state.pointer);
-            materialRef.current.uniforms.uResolution.value.set(
-                state.size.width,
-                state.size.height,
-            );
+        useFrame((state, delta) => {
+            if (materialRef.current) {
+                materialRef.current.uniforms.uTime.value =
+                    state.clock.elapsedTime;
+                materialRef.current.uniforms.uMouse.value.copy(state.pointer);
+                materialRef.current.uniforms.uResolution.value.set(
+                    state.size.width,
+                    state.size.height,
+                );
 
-            targetHover.current = THREE.MathUtils.lerp(
-                targetHover.current,
-                hovered ? 1 : 0,
-                delta * 10,
-            );
-            materialRef.current.uniforms.uHovered.value = targetHover.current;
-        }
-    });
+                targetHover.current = THREE.MathUtils.lerp(
+                    targetHover.current,
+                    hovered && !disableHover ? 1 : 0,
+                    delta * 10,
+                );
+                materialRef.current.uniforms.uHovered.value =
+                    targetHover.current;
+            }
+        });
 
-    return (
-        <mesh
-            onPointerOver={() => setHovered(true)}
-            onPointerOut={() => setHovered(false)}
-        >
-            {/* A plane that perfectly covers the 2D orthographic camera view */}
-            <planeGeometry args={[2, 2]} />
-            <shaderMaterial
-                ref={materialRef}
-                uniforms={uniforms}
-                vertexShader={vertexShader}
-                fragmentShader={fragmentShader}
-                depthWrite={false}
-                depthTest={false}
-            />
-        </mesh>
-    );
-};
+        return (
+            <mesh
+                onPointerOver={() => !disableHover && setHovered(true)}
+                onPointerOut={() => !disableHover && setHovered(false)}
+            >
+                {/* A plane that perfectly covers the 2D orthographic camera view */}
+                <planeGeometry args={[2, 2]} />
+                <shaderMaterial
+                    ref={materialRef}
+                    uniforms={uniforms}
+                    vertexShader={vertexShader}
+                    fragmentShader={fragmentShader}
+                    depthWrite={false}
+                    depthTest={false}
+                />
+            </mesh>
+        );
+    };
 
-export const HeroTexture = () => {
+export const HeroTexture = ({
+    disableHover = false,
+}: {
+    disableHover?: boolean;
+}) => {
     return (
         <div className="absolute inset-0 w-full h-full bg-base-dark-secondary">
             <Canvas
@@ -190,7 +196,7 @@ export const HeroTexture = () => {
                 }}
                 gl={{ antialias: false, powerPreference: "low-power" }} // Optimize for 2D pixelated look
             >
-                <TexturePlane />
+                <TexturePlane disableHover={disableHover} />
             </Canvas>
         </div>
     );

@@ -1,5 +1,5 @@
 {
-  "projectName": "raflux-test-ag",
+  "projectName": "raflux",
   "mode": "file-router",
   "typescript": true,
   "packageManager": "pnpm",
