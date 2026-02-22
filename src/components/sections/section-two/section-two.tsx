@@ -103,6 +103,20 @@ export const SectionTwo = () => {
                             fill={`url(#${patternId})`}
                         ></rect>
                     </svg>
+
+                    <img
+                        alt="Hero Decoration 1"
+                        loading="lazy"
+                        className="object-contain absolute top-0 right-0 h-auto w-50"
+                        src="/images/assets/img-decoration-1.svg"
+                    />
+                    <img
+                        alt="Hero Decoration 2"
+                        loading="lazy"
+                        className="object-contain absolute bottom-0 left-0 h-auto w-62.5"
+                        src="/images/assets/img-decoration-2.svg"
+                    />
+
                     <div className="w-full max-w-360">
                         {/* Row 1 */}
                         <div className="relative z-10 flex w-full justify-between text-[32px] font-semibold text-pumpkin-100 uppercase lg:text-[72px]">
