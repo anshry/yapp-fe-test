@@ -1,5 +1,5 @@
 import { useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -13,7 +13,13 @@ export const RandomLetterText = ({
     delay?: number;
 }) => {
     const ref = useRef<HTMLSpanElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-10%" });
+    const isInView = useInView(ref, { once: true });
+
+    // Pre-calculate stable keys for each character slot
+    const charKeys = useMemo(
+        () => text.split("").map(() => crypto.randomUUID()),
+        [text],
+    );
 
     const [displayedChars, setDisplayedChars] = useState(() =>
         text
@@ -61,7 +67,7 @@ export const RandomLetterText = ({
             if (timeout) clearTimeout(timeout);
             if (interval) clearInterval(interval);
         };
-    }, [text, isInView, delay]);
+    }, [text, delay, isInView]);
 
     return (
         <span ref={ref} className={className}>
@@ -69,7 +75,7 @@ export const RandomLetterText = ({
             <span aria-hidden="true" className="overflow-hidden">
                 {displayedChars.map((char, i) => (
                     <span
-                        key={`char-${i}`}
+                        key={charKeys[i]}
                         className={char === " " ? "w-3 inline-block" : ""}
                     >
                         {char}

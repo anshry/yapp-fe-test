@@ -1,7 +1,10 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useId, useRef, useState } from "react";
+import { motion, useScroll } from "framer-motion";
+import { useId, useRef } from "react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { useIsMobile } from "@/hooks/useIsDesktop";
+import { useResponsiveTransform } from "@/hooks/useResponsiveTransform";
 
-export const OurMissionSection = () => {
+export const SectionTwo = () => {
     const patternId = useId();
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -11,70 +14,34 @@ export const OurMissionSection = () => {
     // we use a single mapping string that queries the real DOM width every frame.
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        // Using "start start" makes progress 0 instantly when the tab hits the navbar.
-        // If we want mobile to "start 60px", we just use "start start" but delay the mobile
-        // multiplier by 60px worth of scroll percent internally.
         offset: ["start start", "end end"],
     });
 
-    const useWindowSize = () => {
-        const [isMobile, setIsMobile] = useState(false);
-
-        useEffect(() => {
-            const checkSize = () => {
-                setIsMobile(window.innerWidth < 1024);
-            };
-
-            checkSize(); // Intial check
-            window.addEventListener("resize", checkSize);
-            return () => window.removeEventListener("resize", checkSize);
-        }, []);
-
-        return isMobile;
-    };
-
-    const isMobile = useWindowSize();
-
-    // Define a custom mapping function that handles both desktop and mobile routing reactively
-    const useResponsiveTransform = (
-        desktopStartPx: number,
-        mobileStartVw: number,
-    ) => {
-        return useTransform(scrollYProgress, (p) => {
-            if (isMobile) {
-                // Mobile uses VW and a 0 to 0.8 progress band
-                let progress = p / 0.8;
-                if (progress < 0) progress = 0;
-                if (progress > 1) progress = 1;
-                return `${mobileStartVw * (1 - progress)}vw`;
-            } else {
-                // Desktop uses PX and a 0.1 to 0.8 progress band
-                let progress = (p - 0.1) / 0.7;
-                if (progress < 0) progress = 0;
-                if (progress > 1) progress = 1;
-                return `${desktopStartPx * (1 - progress)}px`;
-            }
-        });
-    };
+    const isMobile = useIsMobile();
 
     // Row 1 (Odd: Moves entirely from Left)
-    const empowerX = useResponsiveTransform(0, -100);
-    const communitiesX = useResponsiveTransform(-630, -100);
+    const empowerX = useResponsiveTransform(scrollYProgress, isMobile, 0, -100);
+    const communitiesX = useResponsiveTransform(
+        scrollYProgress,
+        isMobile,
+        -630,
+        -100,
+    );
 
     // Row 2 (Even: Moves entirely from Right)
-    const aX = useResponsiveTransform(930, 100);
-    const fairX = useResponsiveTransform(465, 100);
-    const chanceX = useResponsiveTransform(0, 100);
+    const aX = useResponsiveTransform(scrollYProgress, isMobile, 930, 100);
+    const fairX = useResponsiveTransform(scrollYProgress, isMobile, 465, 100);
+    const chanceX = useResponsiveTransform(scrollYProgress, isMobile, 0, 100);
 
     // Row 3 (Odd: Moves entirely from Left)
-    const toX = useResponsiveTransform(0, -100);
-    const winX = useResponsiveTransform(-275, -100);
-    const ownX = useResponsiveTransform(-560, -100);
-    const andX = useResponsiveTransform(-850, -60);
+    const toX = useResponsiveTransform(scrollYProgress, isMobile, 0, -100);
+    const winX = useResponsiveTransform(scrollYProgress, isMobile, -275, -100);
+    const ownX = useResponsiveTransform(scrollYProgress, isMobile, -560, -100);
+    const andX = useResponsiveTransform(scrollYProgress, isMobile, -850, -60);
 
     // Row 4 (Even: Moves entirely from Right)
-    const growX = useResponsiveTransform(890, 100);
-    const togetherX = useResponsiveTransform(0, 100);
+    const growX = useResponsiveTransform(scrollYProgress, isMobile, 890, 100);
+    const togetherX = useResponsiveTransform(scrollYProgress, isMobile, 0, 100);
 
     return (
         <div
@@ -91,13 +58,21 @@ export const OurMissionSection = () => {
             <div className="sticky top-14.5 flex h-[calc(100vh-60px)] flex-col">
                 <div className="border-base-placeholder grid h-20 w-full border-t lg:grid-cols-8">
                     <div className="max-lg:hidden"></div>
-                    <div className="border-base-placeholder col-span-6 flex items-center justify-between gap-4 px-6 lg:border-x">
-                        <div className="bg-primary/10 font-semibold text-lg uppercase text-primary flex items-center w-fit justify-center gap-2 px-4.5 py-1.4 text-nowrap">
-                            Our Mission
-                        </div>
-                        <div className="bg-primary/10 font-semibold text-lg uppercase text-primary flex items-center w-fit justify-center gap-2 px-4.5 py-1.4 text-nowrap max-lg:hidden">
-                            Our Mission
-                        </div>
+                    <div className="border-base-placeholder col-span-6 flex items-center justify-between gap-4 px-6 lg:border-x overflow-hidden">
+                        <ScrollReveal variant="slideLeft" delay={0.1}>
+                            <div className="bg-primary/10 font-semibold text-lg uppercase text-primary flex items-center w-fit justify-center gap-2 px-4.5 py-1.4 text-nowrap">
+                                Our Mission
+                            </div>
+                        </ScrollReveal>
+                        <ScrollReveal
+                            variant="slideRight"
+                            delay={0.2}
+                            className="max-lg:hidden"
+                        >
+                            <div className="bg-primary/10 font-semibold text-lg uppercase text-primary flex items-center w-fit justify-center gap-2 px-4.5 py-1.4 text-nowrap">
+                                Our Mission
+                            </div>
+                        </ScrollReveal>
                     </div>
                 </div>
                 <div className="border-base-placeholder bg-base-dark-secondary relative flex h-full w-full flex-col items-center justify-center overflow-hidden border-t px-6 md:px-12">

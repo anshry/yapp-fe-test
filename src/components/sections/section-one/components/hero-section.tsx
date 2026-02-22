@@ -1,5 +1,5 @@
-import { RandomLetterText } from "@/components/animations/RandomLetterText";
-import { HeroTexture } from "@/components/ui/HeroTexture";
+import { HeroTexture } from "@/components/sections/section-one/components/hero-texture";
+import { RandomLetterText } from "@/components/ui/random-letter-text";
 
 export const HeroSection = () => {
     return (

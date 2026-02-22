@@ -1,0 +1,32 @@
+<svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <!-- discord clip-path handled directly -->
+    <g clip-path="url(#discord-clip)">
+        <mask
+            id="discord-mask"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="16"
+            height="16"
+        >
+            <path d="M0 0H16V16H0V0Z" fill="white" />
+        </mask>
+        <g mask="url(#discord-mask)">
+            <path
+                d="M12.025 1.99976H14.172L9.482 7.08235L15 13.9998H10.68L7.294 9.80524L3.424 13.9998H1.275L6.291 8.56155L1 2.0007H5.43L8.486 5.83393L12.025 1.99976ZM11.27 12.7816H12.46L4.78 3.15455H3.504L11.27 12.7816Z"
+                fill="currentColor"
+            />
+        </g>
+    </g>
+    <defs>
+        <clipPath id="discord-clip">
+            <rect width="16" height="16" fill="white" />
+        </clipPath>
+    </defs>
+</svg>

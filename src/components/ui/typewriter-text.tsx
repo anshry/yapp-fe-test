@@ -64,7 +64,7 @@ export const TypewriterText = ({
                 {wordObjects.map((wordObj, wordIndex) => {
                     const isLastWord = wordIndex === wordObjects.length - 1;
                     return (
-                        <span key={wordIndex}>
+                        <span key={`${wordObj.word}-${wordIndex}`}>
                             <span className="inline-block whitespace-nowrap">
                                 {wordObj.word
                                     .split("")
@@ -91,7 +91,7 @@ export const TypewriterText = ({
                                                     {char}
                                                 </span>
                                                 <span
-                                                    className={`absolute top-[3px] right-0 bottom-[3px] left-[1px] transition-opacity duration-75 ${cursorClassName}`}
+                                                    className={`absolute top-0.75 right-0 bottom-0.75 left-px transition-opacity duration-75 ${cursorClassName}`}
                                                     style={{
                                                         opacity: isFlashing
                                                             ? 1
