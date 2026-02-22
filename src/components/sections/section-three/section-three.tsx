@@ -57,7 +57,7 @@ export const SectionThree: FC = () => {
                 {/* Top Section */}
                 <div className="grid lg:h-109 lg:grid-cols-6">
                     <div className="max-lg:hidden"></div>
-                    <div className="relative col-span-4 flex h-full gap-3 p-6 max-lg:flex-col lg:items-center">
+                    <div className="relative lg:col-span-4 flex h-full gap-3 p-6 max-lg:flex-col lg:items-center">
                         <p className="text-text-tertiary top-6 right-6 text-sm uppercase max-lg:order-1 lg:absolute lg:mr-2 lg:max-w-50 lg:text-right">
                             <TypewriterText text="LET'S TO BE THE NEXT GENERATION OF NFT RAFFLES" />
                         </p>
@@ -100,7 +100,7 @@ export const SectionThree: FC = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="bg-background border-base-placeholder col-span-5 flex h-full items-center border-t">
+                        <div className="bg-background border-base-placeholder lg:col-span-5 flex h-full items-center border-t">
                             <ScrollReveal
                                 variant="fadeUp"
                                 delay={0.3}
@@ -143,10 +143,9 @@ export const SectionThree: FC = () => {
                     </div>
                 </div>
 
-                {/* Bottom Base Chain Section with Bottom Marquee */}
                 <div className="relative">
                     <div className="grid items-center lg:grid-cols-6">
-                        <div className="bg-background border-base-placeholder col-span-5 flex h-full items-center border-t border-r border-b">
+                        <div className="bg-background border-base-placeholder lg:col-span-5 flex h-full items-center border-t border-r border-b">
                             <ScrollReveal
                                 variant="fadeUp"
                                 delay={0.4}

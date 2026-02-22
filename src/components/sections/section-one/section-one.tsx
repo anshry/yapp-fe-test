@@ -49,8 +49,8 @@ const SLOT_CARDS = [
 
 export function SectionOne() {
     return (
-        <section className="bg-background relative z-0">
-            <div className="bg-base-dark-secondary min-h-[calc(100vh-60px)] flex flex-col">
+        <section className="bg-background sticky top-15 z-0 h-[calc(100vh-3.75rem)] overflow-hidden">
+            <div className="bg-base-dark-secondary h-full flex flex-col">
                 <MarqueeStrip animationVariant="fadeIn" />
                 <div className="flex-1 grid lg:grid-cols-8 mx-auto w-full">
                     <div className="max-lg:hidden w-full h-full border-r border-base-placeholder/0"></div>

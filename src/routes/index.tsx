@@ -84,8 +84,12 @@ function App() {
                         <Navbar />
 
                         <main className="min-h-screen w-full flex-1 overflow-x-clip pt-15">
-                            <SectionOne />
-                            <SectionTwo />
+                            {/* Sticky Context Wrapper for Section One folder illusion */}
+                            <div className="relative w-full">
+                                <SectionOne />
+                                <SectionTwo />
+                            </div>
+
                             <SectionThree />
                             <SectionFour />
                             <SectionFive />

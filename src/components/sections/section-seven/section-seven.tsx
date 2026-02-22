@@ -132,7 +132,7 @@ export function SectionSeven() {
                     <div className="h-full w-full max-lg:hidden"></div>
 
                     {/* Header Content */}
-                    <div className="relative z-10 col-span-6 flex h-full w-full items-center justify-between py-14.5 max-lg:flex-col max-lg:gap-6">
+                    <div className="relative z-10 lg:col-span-6 flex h-full w-full items-center justify-between py-14.5 max-lg:flex-col max-lg:gap-6">
                         <div className="flex w-full gap-6 max-lg:flex-col lg:gap-34">
                             <ScrollReveal
                                 variant="slideLeft"
@@ -188,7 +188,7 @@ export function SectionSeven() {
 
                     {/* biome-ignore lint/a11y/noStaticElementInteractions: UI carousel wrapper handles mouse events */}
                     <div
-                        className="relative z-10 col-span-7 flex w-full gap-6 max-lg:flex-col max-lg:justify-center lg:items-center"
+                        className="relative z-10 lg:col-span-7 flex w-full gap-6 max-lg:flex-col max-lg:justify-center lg:items-center"
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                     >

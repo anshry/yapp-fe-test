@@ -47,7 +47,7 @@ export function ScrollReveal({
     variant = "fadeUp",
     delay = 0,
     duration = 0.5,
-    amount = 0.2, // trigger when 20% visible
+    amount = "some", // trigger when any pixel is visible
     once = true,
     className,
     ...props
