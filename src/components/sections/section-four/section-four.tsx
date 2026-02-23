@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { BuyerInfoCard } from "./components/buyer-info-card";
-import { SellerInfoCard } from "./components/seller-info-card";
+import { InfoCard } from "./components/info-card";
 
 export function SectionFour() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -59,8 +58,44 @@ export function SectionFour() {
                     className="border-base-border-2 flex max-lg:flex-col max-lg:gap-0 lg:gap-2 lg:border-y w-full lg:w-max lg:px-0"
                     style={{ x: isDesktop ? xDesktop : 0 }}
                 >
-                    <SellerInfoCard />
-                    <BuyerInfoCard />
+                    <InfoCard
+                        tagText="For Sellers"
+                        revealDelay={0.2}
+                        spacerPosition="start"
+                        mainTitle="More liquid than opensea"
+                        mainImageSrc="/images/assets/img-info-card-1.svg"
+                        features={[
+                            {
+                                title: "SECURE ESCROW",
+                                description:
+                                    "Smart contracts ensure your assets are safely held until the raffle is complete, protecting both buyers and sellers.",
+                            },
+                            {
+                                title: "Instant Liquidity",
+                                description:
+                                    "Sell out your raffles in hours, not months. More buyers = faster sales, and quicker cash flow.",
+                            },
+                        ]}
+                    />
+                    <InfoCard
+                        tagText="For Buyers"
+                        revealDelay={0.4}
+                        spacerPosition="end"
+                        mainTitle="Join instantly with USDC/USDT"
+                        mainImageSrc="/images/assets/img-info-card-2.svg"
+                        features={[
+                            {
+                                title: "LOW ENTRY COST",
+                                description:
+                                    "Buy tickets starting at $10 instead of paying $50K+ for premium NFTs",
+                            },
+                            {
+                                title: "FAIR CHANCES",
+                                description:
+                                    "Chainlink VRF ensures provably fair random selection",
+                            },
+                        ]}
+                    />
                 </motion.div>
             </div>
         </section>

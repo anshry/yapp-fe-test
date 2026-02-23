@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import { type MotionStyle, motion } from "framer-motion";
 import { useId } from "react";
 import { RandomLetterText } from "@/components/ui/random-letter-text";
 import { ScrollReveal } from "@/components/ui/scroll-reveal"; // Added import
 import { TypewriterText } from "@/components/ui/typewriter-text";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { cn } from "@/utils/cn";
 
 const CardBg = () => {
     const id = useId();
@@ -72,7 +73,7 @@ interface AnimatedCardProps {
         title: string;
         description: string;
     };
-    style: any;
+    style: MotionStyle;
 }
 
 export function AnimatedCard({ card, style }: AnimatedCardProps) {
@@ -125,7 +126,9 @@ export function AnimatedCard({ card, style }: AnimatedCardProps) {
 
                 {/* Back Face exact DOM from user */}
                 <div
-                    className={`absolute inset-0 w-full h-full ${isDesktop ? "backface-hidden" : ""}`}
+                    className={cn("absolute inset-0 w-full h-full", {
+                        "backface-hidden": isDesktop,
+                    })}
                     style={{ transform: "rotateY(180deg)" }}
                 >
                     <CardBgFlipped />

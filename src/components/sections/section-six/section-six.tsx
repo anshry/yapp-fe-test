@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useId, useRef } from "react";
+import { useRef } from "react";
+import { GridPattern } from "@/components/ui/grid-pattern";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { AnimatedCard } from "./components/animated-card";
 
@@ -32,7 +33,6 @@ const cardsData = [
 
 export function SectionSix() {
     const sectionRef = useRef<HTMLElement>(null);
-    const patternId = useId();
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start start", "end end"],
@@ -147,33 +147,7 @@ export function SectionSix() {
                     </div>
                 </motion.div>
                 <div className="absolute inset-0 z-0">
-                    <svg
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 h-full w-full fill-base-placeholder/20 stroke-base-placeholder/20 mask-[linear-gradient(to_bottom_right,white,transparent,transparent)]"
-                    >
-                        <defs>
-                            <pattern
-                                id={patternId}
-                                width="40"
-                                height="40"
-                                patternUnits="userSpaceOnUse"
-                                x="-1"
-                                y="-1"
-                            >
-                                <path
-                                    d="M.5 40V.5H40"
-                                    fill="none"
-                                    strokeDasharray="0"
-                                ></path>
-                            </pattern>
-                        </defs>
-                        <rect
-                            width="100%"
-                            height="100%"
-                            strokeWidth="0"
-                            fill={`url(#${patternId})`}
-                        ></rect>
-                    </svg>
+                    <GridPattern />
                 </div>
 
                 {cardsData.map((card, idx) => (

@@ -1,5 +1,5 @@
-import { HeroTexture } from "@/components/sections/section-one/components/hero-texture";
-import { MarqueeStrip } from "@/components/sections/section-one/components/marquee-strip";
+import { HeroTexture } from "@/components/ui/hero-texture";
+import { MarqueeStrip } from "@/components/ui/marquee-strip";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { TypewriterText } from "@/components/ui/typewriter-text";
 

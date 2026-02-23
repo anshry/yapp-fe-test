@@ -1,11 +1,11 @@
 import { motion, useScroll } from "framer-motion";
-import { useId, useRef } from "react";
+import { useRef } from "react";
+import { GridPattern } from "@/components/ui/grid-pattern";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useIsMobile } from "@/hooks/useIsDesktop";
 import { useResponsiveTransform } from "@/hooks/useResponsiveTransform";
 
-export const SectionTwo = () => {
-    const patternId = useId();
+export function SectionTwo() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Provide a single source of truth for scrolling progress against the container.
@@ -76,33 +76,7 @@ export const SectionTwo = () => {
                     </div>
                 </div>
                 <div className="border-base-placeholder bg-base-dark-secondary relative flex h-full w-full flex-col items-center justify-center overflow-hidden border-t px-6 md:px-12">
-                    <svg
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 h-full w-full fill-base-placeholder/20 stroke-base-placeholder/20 mask-[linear-gradient(to_bottom_right,white,transparent,transparent)]"
-                    >
-                        <defs>
-                            <pattern
-                                id={patternId}
-                                width="40"
-                                height="40"
-                                patternUnits="userSpaceOnUse"
-                                x="-1"
-                                y="-1"
-                            >
-                                <path
-                                    d="M.5 40V.5H40"
-                                    fill="none"
-                                    strokeDasharray="0"
-                                ></path>
-                            </pattern>
-                        </defs>
-                        <rect
-                            width="100%"
-                            height="100%"
-                            strokeWidth="0"
-                            fill={`url(#${patternId})`}
-                        ></rect>
-                    </svg>
+                    <GridPattern />
 
                     <img
                         alt="Hero Decoration 1"
@@ -233,4 +207,4 @@ export const SectionTwo = () => {
             </div>
         </div>
     );
-};
+}

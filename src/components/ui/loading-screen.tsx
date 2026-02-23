@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { lazy, Suspense, useEffect, useState } from "react";
 
 const HeroTexture = lazy(() =>
-    import("@/components/sections/section-one/components/hero-texture").then(
-        (m) => ({ default: m.HeroTexture }),
-    ),
+    import("@/components/ui/hero-texture").then((m) => ({
+        default: m.HeroTexture,
+    })),
 );
 interface LoadingScreenProps {
     onLoadingComplete?: () => void;

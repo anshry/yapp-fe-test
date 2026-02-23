@@ -1,7 +1,7 @@
-import { useTransform } from "framer-motion";
+import { type MotionValue, useTransform } from "framer-motion";
 
 export const useResponsiveTransform = (
-    scrollYProgress: any,
+    scrollYProgress: MotionValue<number>,
     isMobile: boolean,
     desktopStartPx: number,
     mobileStartVw: number,

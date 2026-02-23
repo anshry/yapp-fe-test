@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/utils/cn";
 
 export interface NftCardProps {
     imageSrc: string;
@@ -172,7 +173,11 @@ export const NftCard: React.FC<NftCardProps> = ({
 
     return (
         <div
-            className={`flex flex-col items-center gap-3 w-full border-base-placeholder border-b lg:border-b-0 ${!hideRightBorder ? "border-r" : ""} ${className || ""}`}
+            className={cn(
+                "flex flex-col items-center gap-3 w-full border-base-placeholder border-b lg:border-b-0",
+                !hideRightBorder && "border-r",
+                className,
+            )}
         >
             {/* biome-ignore lint/a11y/noStaticElementInteractions: Visual hover spin effect */}
             <div

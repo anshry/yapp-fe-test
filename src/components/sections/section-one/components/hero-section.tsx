@@ -1,4 +1,4 @@
-import { HeroTexture } from "@/components/sections/section-one/components/hero-texture";
+import { HeroTexture } from "@/components/ui/hero-texture";
 import { RandomLetterText } from "@/components/ui/random-letter-text";
 
 export const HeroSection = () => {

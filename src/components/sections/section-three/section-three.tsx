@@ -1,7 +1,7 @@
-import type { FC } from "react";
 import { RandomLetterText } from "@/components/ui/random-letter-text";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { TypewriterText } from "@/components/ui/typewriter-text";
+import { AssetMarquee } from "./components/asset-marquee";
 
 const TOP_MARQUEE_ITEMS = [
     {
@@ -40,9 +40,8 @@ const BOTTOM_MARQUEE_ITEMS = [
     },
 ];
 
-const MARQUEE_BLOCKS = Array.from({ length: 4 }).map(() => crypto.randomUUID());
 
-export const SectionThree: FC = () => {
+export const SectionThree = () => {
     return (
         <section className="bg-background relative border-t border-base-placeholder">
             {/* Background Grid Lines */}
@@ -100,93 +99,22 @@ export const SectionThree: FC = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="bg-background border-base-placeholder lg:col-span-5 flex h-full items-center border-t">
-                            <ScrollReveal
-                                variant="fadeUp"
-                                delay={0.3}
-                                className="w-full"
-                            >
-                                <div className="group flex flex-row overflow-hidden p-0 [--gap:1rem] gap-(--gap)">
-                                    {MARQUEE_BLOCKS.map((blockId) => (
-                                        <div
-                                            key={blockId}
-                                            className="animate-marquee flex flex-row shrink-0 justify-around gap-(--gap)"
-                                            style={{ animationDuration: "10s" }}
-                                        >
-                                            {TOP_MARQUEE_ITEMS.map((item) => (
-                                                <div
-                                                    key={`${blockId}-${item.name}`}
-                                                    className="border-base-placeholder flex h-45 w-52.5 flex-col items-center justify-center gap-4 border-x"
-                                                >
-                                                    <div className="relative flex h-27 w-27 items-center justify-center">
-                                                        <div className="border-pumpkin-800 size-2.5 absolute top-0 left-0 border-t border-l"></div>
-                                                        <div className="border-pumpkin-800 size-2.5 absolute top-0 right-0 border-t border-r"></div>
-                                                        <div className="border-pumpkin-800 size-2.5 absolute bottom-0 left-0 border-b border-l"></div>
-                                                        <div className="border-pumpkin-800 size-2.5 absolute bottom-0 right-0 border-b border-r"></div>
-                                                        <img
-                                                            alt={item.name}
-                                                            loading="lazy"
-                                                            className="h-20 w-20 rounded object-cover"
-                                                            src={item.src}
-                                                        />
-                                                    </div>
-                                                    <p className="text-pumpkin-100 text-sm uppercase">
-                                                        {item.name}
-                                                    </p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ))}
-                                </div>
-                            </ScrollReveal>
-                        </div>
+                        <AssetMarquee
+                            items={TOP_MARQUEE_ITEMS}
+                            className="border-t"
+                            revealDelay={0.3}
+                        />
                     </div>
                 </div>
 
                 <div className="relative">
                     <div className="grid items-center lg:grid-cols-6">
-                        <div className="bg-background border-base-placeholder lg:col-span-5 flex h-full items-center border-t border-r border-b">
-                            <ScrollReveal
-                                variant="fadeUp"
-                                delay={0.4}
-                                className="w-full"
-                            >
-                                <div className="group flex flex-row overflow-hidden p-0 [--gap:1rem] gap-(--gap)">
-                                    {MARQUEE_BLOCKS.map((blockId) => (
-                                        <div
-                                            key={`bottom-${blockId}`}
-                                            className="animate-marquee flex flex-row shrink-0 justify-around [animation-direction:reverse] gap-(--gap)"
-                                            style={{ animationDuration: "10s" }}
-                                        >
-                                            {BOTTOM_MARQUEE_ITEMS.map(
-                                                (item) => (
-                                                    <div
-                                                        key={`bottom-${blockId}-${item.name}`}
-                                                        className="border-base-placeholder flex h-45 w-52.5 flex-col items-center justify-center gap-4 border-x"
-                                                    >
-                                                        <div className="relative flex h-27 w-27 items-center justify-center">
-                                                            <div className="border-pumpkin-800 size-2.5 absolute top-0 left-0 border-t border-l"></div>
-                                                            <div className="border-pumpkin-800 size-2.5 absolute top-0 right-0 border-t border-r"></div>
-                                                            <div className="border-pumpkin-800 size-2.5 absolute bottom-0 left-0 border-b border-l"></div>
-                                                            <div className="border-pumpkin-800 size-2.5 absolute bottom-0 right-0 border-b border-r"></div>
-                                                            <img
-                                                                alt={item.name}
-                                                                loading="lazy"
-                                                                className="h-20 w-20 rounded object-cover"
-                                                                src={item.src}
-                                                            />
-                                                        </div>
-                                                        <p className="text-pumpkin-100 text-sm uppercase">
-                                                            {item.name}
-                                                        </p>
-                                                    </div>
-                                                ),
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </ScrollReveal>
-                        </div>
+                        <AssetMarquee
+                            items={BOTTOM_MARQUEE_ITEMS}
+                            reverse={true}
+                            className="border-t border-r border-b"
+                            revealDelay={0.4}
+                        />
                         <div className="flex">
                             <div className="bg-background border-base-border-2 flex h-56.25 w-56.25 items-center justify-center border-t border-r border-b p-4">
                                 <p className="text-text-tertiary max-w-37 text-sm font-medium">

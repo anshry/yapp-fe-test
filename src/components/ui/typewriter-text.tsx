@@ -1,5 +1,6 @@
 import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/utils/cn";
 
 export const TypewriterText = ({
     text,
@@ -91,7 +92,10 @@ export const TypewriterText = ({
                                                     {char}
                                                 </span>
                                                 <span
-                                                    className={`absolute top-0.75 right-0 bottom-0.75 left-px transition-opacity duration-75 ${cursorClassName}`}
+                                                    className={cn(
+                                                        "absolute top-0.75 right-0 bottom-0.75 left-px transition-opacity duration-75",
+                                                        cursorClassName,
+                                                    )}
                                                     style={{
                                                         opacity: isFlashing
                                                             ? 1

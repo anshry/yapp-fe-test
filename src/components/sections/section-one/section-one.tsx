@@ -1,9 +1,9 @@
-
+import { MarqueeStrip } from "@/components/ui/marquee-strip";
 import { NftCard } from "@/components/ui/nft-card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { TypewriterText } from "@/components/ui/typewriter-text";
+import { cn } from "@/utils/cn";
 import { HeroSection } from "./components/hero-section";
-import { MarqueeStrip } from "./components/marquee-strip";
 
 const SLOT_CARDS = [
     {
@@ -60,7 +60,10 @@ export function SectionOne() {
                             {SLOT_CARDS.map((card, index) => (
                                 <div
                                     key={card.id}
-                                    className={`flex h-full w-full ${card.wrapperClass || ""}`}
+                                    className={cn(
+                                        "flex h-full w-full",
+                                        card.wrapperClass,
+                                    )}
                                 >
                                     <ScrollReveal
                                         variant="fadeIn"
