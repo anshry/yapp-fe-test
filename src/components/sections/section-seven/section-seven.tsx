@@ -188,16 +188,13 @@ export function SectionSeven() {
 
                         <div className="max-lg:hidden"></div>
 
-                        {/* biome-ignore lint/a11y/noStaticElementInteractions: UI carousel wrapper handles mouse events */}
-                        <div
-                            className="relative z-10 lg:col-span-7 flex w-full gap-6 max-lg:flex-col max-lg:justify-center lg:items-center"
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
-                        >
+                        <div className="relative z-10 lg:col-span-7 flex w-full gap-6 max-lg:flex-col max-lg:justify-center lg:items-center">
                             <div className="z-10 flex items-center -space-x-px max-lg:px-6 lg:-translate-x-[calc(50%+0.5px)]">
                                 <button
                                     type="button"
                                     onClick={handlePrev}
+                                    onMouseEnter={() => setIsHovered(true)}
+                                    onMouseLeave={() => setIsHovered(false)}
                                     className="bg-base-dark-secondary hover:border-primary group border-base-border-2 flex h-37.5 w-15 cursor-pointer items-center justify-center border-x border-y transition-all duration-300 hover:z-10"
                                 >
                                     <ArrowLeftIcon className="group-hover:text-primary transition-all duration-300" />
@@ -205,6 +202,8 @@ export function SectionSeven() {
                                 <button
                                     type="button"
                                     onClick={handleNext}
+                                    onMouseEnter={() => setIsHovered(true)}
+                                    onMouseLeave={() => setIsHovered(false)}
                                     className="bg-base-dark-secondary hover:border-primary group border-base-border-2 flex h-37.5 w-15 cursor-pointer items-center justify-center border-x border-y transition-all duration-300"
                                 >
                                     <ArrowLeftIcon className="group-hover:text-primary rotate-180 transition-all duration-300" />
