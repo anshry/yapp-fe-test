@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ArrowDiagonalIcon from "@/assets/icons/arrow-diagonal.svg?react";
 import ArrowLeftIcon from "@/assets/icons/arrow-left.svg?react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { TypewriterText } from "@/components/ui/typewriter-text";
 import { RaffleCard, type RaffleData } from "./components/raffle-card";
 
@@ -113,142 +114,144 @@ export function SectionSeven() {
     }, []);
 
     return (
-        <section className="relative z-10 w-full block">
-            <div className="border-base-border-2 w-full grid border-y bg-background">
-                {/* Header Subgrid */}
-                <div className="relative grid gap-6 max-lg:px-6 lg:h-145 lg:grid-cols-8">
-                    {/* Background scaffold lines */}
-                    <div className="absolute inset-0 grid grid-cols-6 lg:grid-cols-8 pointer-events-none">
-                        <div className="border-base-border-2 h-full border-r"></div>
-                        <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
+        <TooltipProvider delayDuration={300}>
+            <section className="relative z-10 w-full block">
+                <div className="border-base-border-2 w-full grid border-y bg-background">
+                    {/* Header Subgrid */}
+                    <div className="relative grid gap-6 max-lg:px-6 lg:h-145 lg:grid-cols-8">
+                        {/* Background scaffold lines */}
+                        <div className="absolute inset-0 grid grid-cols-6 lg:grid-cols-8 pointer-events-none">
+                            <div className="border-base-border-2 h-full border-r"></div>
+                            <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
+                                <div className="border-base-border-2 h-full lg:border-r"></div>
+                            </div>
+                            <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
+                                <div className="border-base-border-2 h-full lg:border-r"></div>
+                            </div>
                             <div className="border-base-border-2 h-full lg:border-r"></div>
                         </div>
-                        <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
-                            <div className="border-base-border-2 h-full lg:border-r"></div>
-                        </div>
-                        <div className="border-base-border-2 h-full lg:border-r"></div>
-                    </div>
 
-                    <div className="h-full w-full max-lg:hidden"></div>
+                        <div className="h-full w-full max-lg:hidden"></div>
 
-                    {/* Header Content */}
-                    <div className="relative z-10 lg:col-span-6 flex h-full w-full items-center justify-between py-14.5 max-lg:flex-col max-lg:gap-6">
-                        <div className="flex w-full gap-6 max-lg:flex-col lg:gap-34">
-                            <ScrollReveal
-                                variant="slideLeft"
-                                delay={0.1}
-                                className="w-full lg:-ml-5 lg:max-w-115.5"
-                            >
-                                <div className="border-base-placeholder bg-background-2 w-full space-y-11 border px-8 py-6">
-                                    <div className="bg-primary/10 font-semibold text-lg uppercase text-primary flex items-center w-fit justify-center gap-2 px-4.5 py-1.4 text-nowrap">
-                                        For Sellers
-                                    </div>
-                                    <h1 className="text-pumpkin-100 text-4xl leading-[120%] font-semibold uppercase lg:text-[80px]">
-                                        DON'T MISS OUT
-                                    </h1>
-                                </div>
-                            </ScrollReveal>
-                            <p className="text-text-tertiary text-right text-sm uppercase max-lg:hidden lg:max-w-35.75">
-                                <TypewriterText text="// EVM COMPATIBLE (BASE)" />
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col justify-between max-lg:w-full max-lg:gap-2 lg:h-full lg:items-end">
-                            <button
-                                type="button"
-                                className="group text-primary hover:text-pumpkin-100 transition-colors flex cursor-pointer items-center gap-4 text-2xl font-medium text-nowrap uppercase"
-                            >
-                                <TypewriterText text="BROWSE RAFLUX" />
-                                <div className="border-base-placeholder bg-background-2 border p-2 group-hover:bg-primary group-hover:text-background transition-colors">
-                                    <ArrowDiagonalIcon />
-                                </div>
-                            </button>
-                            <p className="text-text-tertiary mr-2 text-right text-sm uppercase max-lg:hidden lg:max-w-25.25">
-                                <TypewriterText text="// CHAINLINK VRF" />
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Sliding Horizontal Grid */}
-                <div className="border-base-border-2 relative grid overflow-x-hidden border-t max-lg:w-full max-lg:py-6 lg:h-145 lg:grid-cols-8">
-                    {/* Background scaffold lines */}
-                    <div className="absolute inset-0 grid grid-cols-6 lg:grid-cols-8 pointer-events-none">
-                        <div className="border-base-border-2 h-full border-r"></div>
-                        <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
-                            <div className="border-base-border-2 h-full lg:border-r"></div>
-                        </div>
-                        <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
-                            <div className="border-base-border-2 h-full lg:border-r"></div>
-                        </div>
-                        <div className="border-base-border-2 h-full lg:border-r"></div>
-                    </div>
-
-                    <div className="max-lg:hidden"></div>
-
-                    {/* biome-ignore lint/a11y/noStaticElementInteractions: UI carousel wrapper handles mouse events */}
-                    <div
-                        className="relative z-10 lg:col-span-7 flex w-full gap-6 max-lg:flex-col max-lg:justify-center lg:items-center"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                    >
-                        <div className="z-10 flex items-center -space-x-px max-lg:px-6 lg:-translate-x-[calc(50%+0.5px)]">
-                            <button
-                                type="button"
-                                onClick={handlePrev}
-                                className="bg-base-dark-secondary hover:border-primary group border-base-border-2 flex h-37.5 w-15 cursor-pointer items-center justify-center border-x border-y transition-all duration-300 hover:z-10"
-                            >
-                                <ArrowLeftIcon className="group-hover:text-primary transition-all duration-300" />
-                            </button>
-                            <button
-                                type="button"
-                                onClick={handleNext}
-                                className="bg-base-dark-secondary hover:border-primary group border-base-border-2 flex h-37.5 w-15 cursor-pointer items-center justify-center border-x border-y transition-all duration-300"
-                            >
-                                <ArrowLeftIcon className="group-hover:text-primary rotate-180 transition-all duration-300" />
-                            </button>
-                        </div>
-
-                        <div className="border-base-border-2 relative w-full overflow-hidden border-l">
-                            <ScrollReveal
-                                variant="scaleUp"
-                                delay={0.2}
-                                className="w-full"
-                            >
-                                <div
-                                    className="flex h-145 max-lg:gap-6 max-lg:px-6 transition-transform duration-500 ease-in-out"
-                                    style={{
-                                        transform: `translateX(-${currentIndex * cardWidth}px)`,
-                                    }}
+                        {/* Header Content */}
+                        <div className="relative z-10 lg:col-span-6 flex h-full w-full items-center justify-between py-14.5 max-lg:flex-col max-lg:gap-6">
+                            <div className="flex w-full gap-6 max-lg:flex-col lg:gap-34">
+                                <ScrollReveal
+                                    variant="slideLeft"
+                                    delay={0.1}
+                                    className="w-full lg:-ml-5 lg:max-w-115.5"
                                 >
-                                    {rafflesData.map((raffle) => (
-                                        <div
-                                            key={raffle.title}
-                                            className="shrink-0"
-                                        >
-                                            <RaffleCard data={raffle} />
+                                    <div className="border-base-placeholder bg-background-2 w-full space-y-11 border px-8 py-6">
+                                        <div className="bg-primary/10 font-semibold text-lg uppercase text-primary flex items-center w-fit justify-center gap-2 px-4.5 py-1.4 text-nowrap">
+                                            For Sellers
                                         </div>
-                                    ))}
-                                </div>
-                            </ScrollReveal>
+                                        <h1 className="text-pumpkin-100 text-4xl leading-[120%] font-semibold uppercase lg:text-[80px]">
+                                            DON'T MISS OUT
+                                        </h1>
+                                    </div>
+                                </ScrollReveal>
+                                <p className="text-text-tertiary text-right text-sm uppercase max-lg:hidden lg:max-w-35.75">
+                                    <TypewriterText text="// EVM COMPATIBLE (BASE)" />
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col justify-between max-lg:w-full max-lg:gap-2 lg:h-full lg:items-end">
+                                <button
+                                    type="button"
+                                    className="group text-primary hover:text-pumpkin-100 transition-colors flex cursor-pointer items-center gap-4 text-2xl font-medium text-nowrap uppercase"
+                                >
+                                    <TypewriterText text="BROWSE RAFLUX" />
+                                    <div className="border-base-placeholder bg-background-2 border p-2 group-hover:bg-primary group-hover:text-background transition-colors">
+                                        <ArrowDiagonalIcon />
+                                    </div>
+                                </button>
+                                <p className="text-text-tertiary mr-2 text-right text-sm uppercase max-lg:hidden lg:max-w-25.25">
+                                    <TypewriterText text="// CHAINLINK VRF" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Sliding Horizontal Grid */}
+                    <div className="border-base-border-2 relative grid overflow-x-hidden border-t max-lg:w-full max-lg:py-6 lg:h-145 lg:grid-cols-8">
+                        {/* Background scaffold lines */}
+                        <div className="absolute inset-0 grid grid-cols-6 lg:grid-cols-8 pointer-events-none">
+                            <div className="border-base-border-2 h-full border-r"></div>
+                            <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
+                                <div className="border-base-border-2 h-full lg:border-r"></div>
+                            </div>
+                            <div className="border-base-border-2 col-span-2 grid h-full grid-cols-2 border-r lg:col-span-3">
+                                <div className="border-base-border-2 h-full lg:border-r"></div>
+                            </div>
+                            <div className="border-base-border-2 h-full lg:border-r"></div>
+                        </div>
+
+                        <div className="max-lg:hidden"></div>
+
+                        {/* biome-ignore lint/a11y/noStaticElementInteractions: UI carousel wrapper handles mouse events */}
+                        <div
+                            className="relative z-10 lg:col-span-7 flex w-full gap-6 max-lg:flex-col max-lg:justify-center lg:items-center"
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                        >
+                            <div className="z-10 flex items-center -space-x-px max-lg:px-6 lg:-translate-x-[calc(50%+0.5px)]">
+                                <button
+                                    type="button"
+                                    onClick={handlePrev}
+                                    className="bg-base-dark-secondary hover:border-primary group border-base-border-2 flex h-37.5 w-15 cursor-pointer items-center justify-center border-x border-y transition-all duration-300 hover:z-10"
+                                >
+                                    <ArrowLeftIcon className="group-hover:text-primary transition-all duration-300" />
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={handleNext}
+                                    className="bg-base-dark-secondary hover:border-primary group border-base-border-2 flex h-37.5 w-15 cursor-pointer items-center justify-center border-x border-y transition-all duration-300"
+                                >
+                                    <ArrowLeftIcon className="group-hover:text-primary rotate-180 transition-all duration-300" />
+                                </button>
+                            </div>
+
+                            <div className="border-base-border-2 relative w-full overflow-hidden border-l">
+                                <ScrollReveal
+                                    variant="scaleUp"
+                                    delay={0.2}
+                                    className="w-full"
+                                >
+                                    <div
+                                        className="flex h-145 max-lg:gap-6 max-lg:px-6 transition-transform duration-500 ease-in-out"
+                                        style={{
+                                            transform: `translateX(-${currentIndex * cardWidth}px)`,
+                                        }}
+                                    >
+                                        {rafflesData.map((raffle) => (
+                                            <div
+                                                key={raffle.title}
+                                                className="shrink-0"
+                                            >
+                                                <RaffleCard data={raffle} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </ScrollReveal>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Bottom Scaffolding */}
-            <div className="relative z-10 grid h-50 grid-cols-8 max-lg:hidden w-full bg-background border-base-border-2 border-b">
-                <div className="border-base-border-2 col-span-3 border-r h-full"></div>
-                <div className="border-base-border-2 relative col-span-4 flex items-center justify-center border-r h-full">
-                    <div
-                        className="bg-background absolute top-full h-12 w-137.5"
-                        style={{
-                            clipPath:
-                                "polygon(0px 0%, 100% 0px, 90% 100%, 10% 100%)",
-                        }}
-                    ></div>
+                {/* Bottom Scaffolding */}
+                <div className="relative z-10 grid h-50 grid-cols-8 max-lg:hidden w-full bg-background border-base-border-2 border-b">
+                    <div className="border-base-border-2 col-span-3 border-r h-full"></div>
+                    <div className="border-base-border-2 relative col-span-4 flex items-center justify-center border-r h-full">
+                        <div
+                            className="bg-background absolute top-full h-12 w-137.5"
+                            style={{
+                                clipPath:
+                                    "polygon(0px 0%, 100% 0px, 90% 100%, 10% 100%)",
+                            }}
+                        ></div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </TooltipProvider>
     );
 }

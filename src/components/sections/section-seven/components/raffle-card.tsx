@@ -1,7 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ArrowRightIcon from "@/assets/icons/arrow-right.svg?react";
 import ClockIcon from "@/assets/icons/clock.svg?react";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 function AnimatedValue({ value }: { value: number }) {
     return (
@@ -35,6 +40,8 @@ export function RaffleCard({ data }: { data: RaffleData }) {
     const [timeLeft, setTimeLeft] = useState(() =>
         Math.max(0, data.endTime - Date.now()),
     );
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const [isTruncated, setIsTruncated] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -42,6 +49,21 @@ export function RaffleCard({ data }: { data: RaffleData }) {
         }, 1000);
         return () => clearInterval(interval);
     }, [data.endTime]);
+
+    useEffect(() => {
+        const checkTruncation = () => {
+            if (titleRef.current) {
+                // If scrollWidth is strictly greater than clientWidth, it's visibly truncated
+                setIsTruncated(
+                    titleRef.current.scrollWidth > titleRef.current.clientWidth,
+                );
+            }
+        };
+
+        checkTruncation();
+        window.addEventListener("resize", checkTruncation);
+        return () => window.removeEventListener("resize", checkTruncation);
+    }, []);
 
     const d = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
     const h = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
@@ -61,12 +83,12 @@ export function RaffleCard({ data }: { data: RaffleData }) {
                         <span>H</span>
                     </div>
                     <span>:</span>
-                    <div className="relative inline-flex items-center overflow-hidden text-center min-w-[24px]">
+                    <div className="relative inline-flex items-center overflow-hidden text-center min-w-6">
                         <AnimatedValue value={m} />
                         <span>M</span>
                     </div>
                     <span>:</span>
-                    <div className="relative inline-flex items-center overflow-hidden text-center min-w-[24px]">
+                    <div className="relative inline-flex items-center overflow-hidden text-center min-w-6">
                         <AnimatedValue value={s} />
                         <span>S</span>
                     </div>
@@ -94,9 +116,28 @@ export function RaffleCard({ data }: { data: RaffleData }) {
                         src={data.image}
                     />
                     <div className="space-y-2">
-                        <h2 className="font-geist text-xl font-medium">
-                            {data.title}
-                        </h2>
+                        {isTruncated ? (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <h2
+                                        ref={titleRef}
+                                        className="font-geist text-xl font-medium truncate w-full cursor-default text-left"
+                                    >
+                                        {data.title}
+                                    </h2>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{data.title}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        ) : (
+                            <h2
+                                ref={titleRef}
+                                className="font-geist text-xl font-medium truncate w-full cursor-default text-left"
+                            >
+                                {data.title}
+                            </h2>
+                        )}
                         <div className="font-geist text-text-secondary flex items-center gap-2 text-sm">
                             <ClockIcon />
                             <p>Sale Ended</p>
